@@ -3,9 +3,14 @@
 This repository is a collection of code and figures used in the Anly506 final project. 
 
 ##Data Description
--gapminder dataset
+-Bike Vendors dataset
 -source:
 -basic info:
 
 ##Analytics
--descriptive
+-Clean data
+-Descriptive analysis
+-Visualization
+-Report
+
+
