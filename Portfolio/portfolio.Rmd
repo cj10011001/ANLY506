@@ -5,15 +5,12 @@ date: "2/15/2019"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 ## WEEK 5 (DATA IMPORT)
 
 ###import data
 
-```{r mtcars}
+```{r , echo=TRUE}
 library(tidyverse)
 
 df<-read_csv("/Users/CJ/Documents/GitHub/ANLY506/Data/gapminder.csv") #importing data from data folder
@@ -23,7 +20,7 @@ str(df) #review the structure and summary of this data file
 
 ### parsing 
 
-```{r}
+```{r , echo=TRUE}
 parse_integer(c("1", "234", ".", "567"), na = ".") #parsing integer
 parse_number("It cost $45")  # parsign number: only keeping number
 charToRaw("charles") #ASCII encoding
@@ -39,16 +36,78 @@ read_csv("df-2.csv")
 
 ## WEEK 6
 
-```{r }
+```{r , echo=TRUE}
+library(yarrr)
+View(pirates)
+p<-pirates
+p
+names(p) #the names of columns
+mean(p$height) #mean of height of the pirates
+names(p)[1]<-"NO." #Change name of 1st column to "NO."
+
+p[1,] #slicing by row
+p[,1] #slicing by colomn
+p1<-p[p$headband=="yes",] #selecting parites with headband
+p2<-subset(x=p,
+          BeardLengths<=20) 
+
+library(nycflights13)
+library(tidyverse)
 
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
+## WEEK 7
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r , echo=TRUE}
+library(nycflights13)
+library(tidyverse)
+f0215<-filter(flights, month == 2, day == 15)
+(f0215<-filter(flights, month == 2, day == 15)) #()both save variables and prints out the results
+
+select(flights,dep_delay,arr_delay) # Select columns by column name
+select(flights, year:arr_delay) #select columns from year to arrival delay
+select(flights, -(arr_time:arr_delay)) #remove columns from arr_time to arr_delay
+
+mutate(flights,
+  gain = dep_delay - arr_delay) #adding one more column showing difference of arr_delay and dee_delay
+
+transmute(flights,
+  gain = dep_delay - arr_delay) #creating new data based on old 
+
+
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+## WEEK 9
+
+```{r , echo=TRUE}
+library(tidyverse)
+View(mpg)
+#count bar chart by manufactuerer 
+ggplot(data = mpg, mapping = aes(x = manufacturer)) +
+geom_bar()
+
+#hwy performance boxplot based on manufacturer 
+ggplot(data = mpg, mapping = aes(x = manufacturer, y = hwy)) +
+  geom_boxplot()
+#flip the above chart
+ggplot(data = mpg, mapping = aes(x = manufacturer, y = hwy)) +
+  geom_boxplot()+
+  coord_flip()
+
+
+```
+## WEEK 12
+
+```{r , echo=TRUE}
+library(NbClust)
+library (cluster)
+library (clustertend)
+library (factoextra)
+cluster1 <- read.csv("/Users/CJ/Desktop/ANLY/506/Quiz 12/cluster_1.txt",sep=" ",header = FALSE)
+cluster2 <- read.csv("/Users/CJ/Desktop/ANLY/506/Quiz 12/cluster_2.txt",sep=" ",header = FALSE)
+cluster3 <- read.csv("/Users/CJ/Desktop/ANLY/506/Quiz 12/cluster_3.txt",sep=" ",header = FALSE)
+clusters<-data.frame(c1=cluster1$V2,c2=cluster2$V2,c3=cluster3$V2) 
+fviz_nbclust(clusters, kmeans, method = "gap_stat")+ theme_classic() ##use Gap Statistic Method to get the optimal number of cluster which is 4 in this case
+
+```
