@@ -1,0 +1,54 @@
+---
+title: "Portfolio"
+author: "Chuanjun Su"
+date: "2/15/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## WEEK 5 (DATA IMPORT)
+
+###import data
+
+```{r mtcars}
+library(tidyverse)
+
+df<-read_csv("/Users/CJ/Documents/GitHub/ANLY506/Data/gapminder.csv") #importing data from data folder
+summary(df) 
+str(df) #review the structure and summary of this data file
+```
+
+### parsing 
+
+```{r}
+parse_integer(c("1", "234", ".", "567"), na = ".") #parsing integer
+parse_number("It cost $45")  # parsign number: only keeping number
+charToRaw("charles") #ASCII encoding
+parse_datetime("20190215") #parsing datetime
+library(hms)
+parse_time("11:55 pm") #parsing time
+parse_date("02/15/19", "%m/%d/%y") 
+
+write_csv(df, "df-2.csv")
+read_csv("df-2.csv")
+
+```
+
+## WEEK 6
+
+```{r }
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
