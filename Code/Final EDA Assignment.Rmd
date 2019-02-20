@@ -8,7 +8,6 @@ output: html_document
 ##Questions
 ```{r , echo=TRUE}
 
-
 #The questions for this data analysis task to solve are:
 #1. How life expectancy change over time?
 #2. What's the life expectancy pattern in different regions for the past 200 years?
@@ -77,5 +76,6 @@ ggplot(data = countries, aes(x = Year, y = income, color=region)) +
 ###2.Europe & East Asia area and America area has longer life expectency than other regions
 ###3.Although impoved around 1950s, Sub-Sahran Africa has the lowest life expenctency for now 
 ###4.China and India are having low income comparing to other 4 countries selected. 
+#GITHUB LINK:https://github.com/cj10011001/ANLY506/tree/master/Code
 ```
 
