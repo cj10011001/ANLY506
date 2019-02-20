@@ -37,8 +37,9 @@ read_csv("df-2.csv")
 ## WEEK 6
 
 ```{r , echo=TRUE}
+install.packages("yarrr",repos = "http://cran.us.r-project.org")
 library(yarrr)
-View(pirates)
+
 p<-pirates
 p
 names(p) #the names of columns
@@ -51,8 +52,6 @@ p1<-p[p$headband=="yes",] #selecting parites with headband
 p2<-subset(x=p,
           BeardLengths<=20) 
 
-library(nycflights13)
-library(tidyverse)
 
 ```
 
@@ -81,8 +80,7 @@ transmute(flights,
 ## WEEK 9
 
 ```{r , echo=TRUE}
-library(tidyverse)
-View(mpg)
+
 #count bar chart by manufactuerer 
 ggplot(data = mpg, mapping = aes(x = manufacturer)) +
 geom_bar()
