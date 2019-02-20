@@ -1,0 +1,81 @@
+---
+title: "Final EDA Assignment"
+author: "Chuanjun Su"
+date: "2/19/2019"
+output: html_document
+---
+
+##Questions
+```{r , echo=TRUE}
+
+
+#The questions for this data analysis task to solve are:
+#1. How life expectancy change over time?
+#2. What's the life expectancy pattern in different regions for the past 200 years?
+#3. For 6 selected countries, what's their income trend? 
+
+```
+
+
+##Data preparation and cleaning
+```{r , echo=TRUE}
+library(dplyr);library( ggplot2);library()
+#import data
+gapminder<-read.csv("/Users/CJ/Documents/GitHub/ANLY506/Data/gapminder.csv",sep = ",",header = TRUE)
+#clean data and view the structure of the cleaned dataset
+gap<- na.omit(gapminder)
+str(gap)
+
+#Here we have 38,943 observations of 6 variables, recording the life expectency, population and income situation of 197 countries since year 1800. 
+```
+
+
+##Q1:How life expectancy change over time?
+
+```{r , echo=TRUE}
+
+ggplot(data = gap, aes(x = Year, y = life)) + geom_point()
+
+#As the plot shows, People tend to live longer after around 1950s. 
+```
+
+##Q2: What's the life expectancy pattern in different regions for the past 200 years?
+
+```{r , echo=TRUE}
+
+ggplot(data = gap, aes(x=Year, y=life, by=Country, color=region)) +
+  geom_line() + geom_point()
+
+#With the graph below we can clealy see the life expectency patterns for the past 200 years:
+#1. Europe & East Asia area and America area has longer life expectency than other regions
+#2. Although impoved around 1950s, Sub-Sahran Africa has the lowest life expenctency for now 
+
+```
+
+
+
+## Q3: For 6 selected countries, what's their income trend? 
+
+```{r , echo=TRUE}
+
+idx<-c("China","United States","India","Japan","Germany","Russia") ##select 6 countries to compare
+countries<-gap[gap$Country %in% idx,]
+  
+ggplot(data = countries, aes(x = Year, y = income, color=region)) +
+  geom_line() + facet_wrap( ~ Country)
+
+#Through compaison, in the selected 6 countries, China and India are having low income comparing to other 4 countries. These 4 countries' income grow significantly around 1950s, while China and India are starting to grow around 1980s and 1990s. 
+
+```
+
+## Conclusion
+
+
+```{r , echo=TRUE}
+###In this project, we performed data wrangling and an initial exploratory data analysis with the following results:
+###1.People tend to live longer after around 1950s. 
+###2.Europe & East Asia area and America area has longer life expectency than other regions
+###3.Although impoved around 1950s, Sub-Sahran Africa has the lowest life expenctency for now 
+###4.China and India are having low income comparing to other 4 countries selected. 
+```
+
